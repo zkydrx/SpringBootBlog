@@ -23,7 +23,7 @@
     <!--<a class="page-number" th:href="@{'?page='+${pageInfo.pages}" th:text="${pageInfo.pages}"></a>-->
 
     <th:block th:if="${pageInfo.hasNextPage}">
-        <a class="extend next" rel="next"  th:href="@{'?page='+${pageInfo.nextPage}}">
+        <a class="extend next" rel="next" th:href="@{'?page='+${pageInfo.nextPage}}">
             <i class="fa fa-angle-right"></i>
         </a>
     </th:block>

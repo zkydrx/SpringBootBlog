@@ -15,10 +15,12 @@ import java.util.List;
  * 日志dao层接口
  */
 @Mapper
-public interface LogDao {
+public interface LogDao
+{
 
     /**
      * 添加日志
+     *
      * @param logDomain
      * @return
      */
@@ -26,6 +28,7 @@ public interface LogDao {
 
     /**
      * 获取日志
+     *
      * @return
      */
     List<LogDomain> getLogs();

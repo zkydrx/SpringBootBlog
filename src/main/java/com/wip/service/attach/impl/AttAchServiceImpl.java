@@ -24,14 +24,16 @@ import java.util.List;
  * 文件接口实现
  */
 @Service
-public class AttAchServiceImpl implements AttAchService {
+public class AttAchServiceImpl implements AttAchService
+{
 
     @Autowired
     private AttAchDao attAchDao;
 
     @Override
     @CacheEvict(value = {"attCaches", "attCache"}, allEntries = true, beforeInvocation = true)
-    public void addAttAch(AttAchDomain attAchDomain) {
+    public void addAttAch(AttAchDomain attAchDomain)
+    {
         if (null == attAchDomain)
             throw BusinessException.withErrorCode(ErrorConstant.Common.PARAM_IS_EMPTY);
         attAchDao.addAttAch(attAchDomain);
@@ -39,7 +41,8 @@ public class AttAchServiceImpl implements AttAchService {
 
     @Override
     @Cacheable(value = "attCaches", key = "'atts' + #p0")
-    public PageInfo<AttAchDto> getAtts(int pageNum, int pageSize) {
+    public PageInfo<AttAchDto> getAtts(int pageNum, int pageSize)
+    {
         PageHelper.startPage(pageNum, pageSize);
         List<AttAchDto> atts = attAchDao.getAtts();
         PageInfo<AttAchDto> pageInfo = new PageInfo<>(atts);
@@ -48,7 +51,8 @@ public class AttAchServiceImpl implements AttAchService {
 
     @Override
     @Cacheable(value = "attCaches", key = "'attAchByid' + #p0")
-    public AttAchDto getAttAchById(Integer id) {
+    public AttAchDto getAttAchById(Integer id)
+    {
         if (null == id)
             throw BusinessException.withErrorCode(ErrorConstant.Common.PARAM_IS_EMPTY);
         return attAchDao.getAttAchById(id);
@@ -56,7 +60,8 @@ public class AttAchServiceImpl implements AttAchService {
 
     @Override
     @CacheEvict(value = {"attCaches", "attCache"}, allEntries = true, beforeInvocation = true)
-    public void deleteAttAch(Integer id) {
+    public void deleteAttAch(Integer id)
+    {
         if (null == id)
             throw BusinessException.withErrorCode(ErrorConstant.Common.PARAM_IS_EMPTY);
         attAchDao.deleteAttAch(id);

@@ -14,7 +14,7 @@
 
     <!--用户表-->
     <sql id="TABLE_USER">
-         <include refid="com.wip.dao.UserDao.BASE_TABLE"/>
+        <include refid="com.wip.dao.UserDao.BASE_TABLE"/>
     </sql>
 
     <!--关联查询的用户表需要的字段-->
@@ -26,7 +26,7 @@
     <!--新增单个附件-->
     <insert id="addAttAch" parameterType="com.wip.model.AttAchDomain">
         INSERT INTO
-          <include refid="BASE_TABLE"/>
+        <include refid="BASE_TABLE"/>
         <trim prefix="(" suffix=")" suffixOverrides=",">
             fname,
             ftype,
@@ -46,51 +46,55 @@
     <!--获取所有的附件信息-->
     <select id="getAtts" resultType="com.wip.dto.AttAchDto">
         SELECT
-            <trim suffix="" suffixOverrides=",">
-                <include refid="BASE_COLUMN"/>
-                <include refid="REL_USER_COLUMN"/>
-            </trim>
+        <trim suffix="" suffixOverrides=",">
+            <include refid="BASE_COLUMN"/>
+            <include refid="REL_USER_COLUMN"/>
+        </trim>
         FROM
-            <include refid="BASE_TABLE"/> AS aa
+        <include refid="BASE_TABLE"/>
+        AS aa
         LEFT JOIN
-            <include refid="TABLE_USER"/> AS u
+        <include refid="TABLE_USER"/>
+        AS u
         ON
-            aa.authorId = u.uid
+        aa.authorId = u.uid
         ORDER BY
-            aa.created DESC
+        aa.created DESC
     </select>
 
     <!--获取附件总数-->
     <select id="getAttAchCount" resultType="java.lang.Long">
         SELECT
-          COUNT(*)
+        COUNT(*)
         FROM
-          <include refid="BASE_TABLE"/>
+        <include refid="BASE_TABLE"/>
     </select>
 
     <!--通过ID获取附件信息-->
     <select id="getAttAchById" resultType="com.wip.dto.AttAchDto">
         SELECT
-            <trim suffix="" suffixOverrides=",">
-                <include refid="BASE_COLUMN"/>
-                <include refid="REL_USER_COLUMN"/>
-            </trim>
+        <trim suffix="" suffixOverrides=",">
+            <include refid="BASE_COLUMN"/>
+            <include refid="REL_USER_COLUMN"/>
+        </trim>
         FROM
-            <include refid="BASE_TABLE"/> AS aa
+        <include refid="BASE_TABLE"/>
+        AS aa
         LEFT JOIN
-            <include refid="TABLE_USER"/> AS u
+        <include refid="TABLE_USER"/>
+        AS u
         ON
-            aa.authorId = u.uid
+        aa.authorId = u.uid
         WHERE
-            aa.id = #{id, jdbcType=INTEGER}
+        aa.id = #{id, jdbcType=INTEGER}
     </select>
 
     <!--通过ID删除附件信息-->
     <delete id="deleteAttAch">
         DELETE FROM
-          <include refid="BASE_TABLE"/>
+        <include refid="BASE_TABLE"/>
         WHERE
-          id = #{id, jdbcType=INTEGER}
+        id = #{id, jdbcType=INTEGER}
     </delete>
 
 </mapper>

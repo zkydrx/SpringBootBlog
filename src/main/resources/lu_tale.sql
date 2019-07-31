@@ -20,8 +20,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for t_attach
 -- ----------------------------
-DROP TABLE IF EXISTS `t_attach`;
-CREATE TABLE `t_attach`  (
+drop table IF EXISTS `t_attach`;
+create TABLE `t_attach`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT,
   `fname` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   `ftype` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
@@ -35,8 +35,8 @@ CREATE TABLE `t_attach`  (
 -- ----------------------------
 -- Table structure for t_comments
 -- ----------------------------
-DROP TABLE IF EXISTS `t_comments`;
-CREATE TABLE `t_comments`  (
+drop table IF EXISTS `t_comments`;
+create TABLE `t_comments`  (
   `coid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `cid` int(10) UNSIGNED DEFAULT 0,
   `created` int(10) UNSIGNED DEFAULT 0,
@@ -60,8 +60,8 @@ CREATE TABLE `t_comments`  (
 -- ----------------------------
 -- Table structure for t_contents
 -- ----------------------------
-DROP TABLE IF EXISTS `t_contents`;
-CREATE TABLE `t_contents`  (
+drop table IF EXISTS `t_contents`;
+create TABLE `t_contents`  (
   `cid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `titlePic` varchar(55) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -88,8 +88,8 @@ CREATE TABLE `t_contents`  (
 -- ----------------------------
 -- Table structure for t_logs
 -- ----------------------------
-DROP TABLE IF EXISTS `t_logs`;
-CREATE TABLE `t_logs`  (
+drop table IF EXISTS `t_logs`;
+create TABLE `t_logs`  (
   `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键编号',
   `action` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '事件',
   `data` varchar(2000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '数据',
@@ -103,8 +103,8 @@ CREATE TABLE `t_logs`  (
 -- ----------------------------
 -- Table structure for t_metas
 -- ----------------------------
-DROP TABLE IF EXISTS `t_metas`;
-CREATE TABLE `t_metas`  (
+drop table IF EXISTS `t_metas`;
+create TABLE `t_metas`  (
   `mid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `slug` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -120,8 +120,8 @@ CREATE TABLE `t_metas`  (
 -- ----------------------------
 -- Table structure for t_options
 -- ----------------------------
-DROP TABLE IF EXISTS `t_options`;
-CREATE TABLE `t_options`  (
+drop table IF EXISTS `t_options`;
+create TABLE `t_options`  (
   `name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '',
   `value` varchar(1000) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT '',
   `description` varchar(200) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -131,8 +131,8 @@ CREATE TABLE `t_options`  (
 -- ----------------------------
 -- Table structure for t_relationships
 -- ----------------------------
-DROP TABLE IF EXISTS `t_relationships`;
-CREATE TABLE `t_relationships`  (
+drop table IF EXISTS `t_relationships`;
+create TABLE `t_relationships`  (
   `cid` int(10) UNSIGNED NOT NULL,
   `mid` int(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`cid`, `mid`) USING BTREE
@@ -141,26 +141,26 @@ CREATE TABLE `t_relationships`  (
 -- ----------------------------
 -- Records of t_relationships
 -- ----------------------------
-INSERT INTO `t_relationships` VALUES (27, 41);
-INSERT INTO `t_relationships` VALUES (27, 42);
-INSERT INTO `t_relationships` VALUES (27, 43);
-INSERT INTO `t_relationships` VALUES (27, 46);
-INSERT INTO `t_relationships` VALUES (28, 41);
-INSERT INTO `t_relationships` VALUES (28, 43);
-INSERT INTO `t_relationships` VALUES (29, 41);
-INSERT INTO `t_relationships` VALUES (29, 42);
-INSERT INTO `t_relationships` VALUES (29, 43);
-INSERT INTO `t_relationships` VALUES (30, 48);
-INSERT INTO `t_relationships` VALUES (31, 48);
-INSERT INTO `t_relationships` VALUES (32, 41);
-INSERT INTO `t_relationships` VALUES (32, 43);
-INSERT INTO `t_relationships` VALUES (33, 48);
+insert into `t_relationships` VALUES (27, 41);
+insert into `t_relationships` VALUES (27, 42);
+insert into `t_relationships` VALUES (27, 43);
+insert into `t_relationships` VALUES (27, 46);
+insert into `t_relationships` VALUES (28, 41);
+insert into `t_relationships` VALUES (28, 43);
+insert into `t_relationships` VALUES (29, 41);
+insert into `t_relationships` VALUES (29, 42);
+insert into `t_relationships` VALUES (29, 43);
+insert into `t_relationships` VALUES (30, 48);
+insert into `t_relationships` VALUES (31, 48);
+insert into `t_relationships` VALUES (32, 41);
+insert into `t_relationships` VALUES (32, 43);
+insert into `t_relationships` VALUES (33, 48);
 
 -- ----------------------------
 -- Table structure for t_users
 -- ----------------------------
-DROP TABLE IF EXISTS `t_users`;
-CREATE TABLE `t_users`  (
+drop table IF EXISTS `t_users`;
+create TABLE `t_users`  (
   `uid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `username` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   `password` varchar(64) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
@@ -179,20 +179,20 @@ CREATE TABLE `t_users`  (
 -- ----------------------------
 -- Records of t_users
 -- ----------------------------
-INSERT INTO `t_users` VALUES (1, 'admin', 'a66abb5684c45962d887564f08346e8d', '864655735@qq.com', NULL, 'admin', 1490756162, 0, 0, 'visitor');
+insert into `t_users` VALUES (1, 'admin', 'a66abb5684c45962d887564f08346e8d', '864655735@qq.com', NULL, 'admin', 1490756162, 0, 0, 'visitor');
 
 SET FOREIGN_KEY_CHECKS = 1;
 
 
-INSERT INTO t_options (name, value, description) VALUES ('baidu_site_verification', '123456789', '百度网站验证码');
-INSERT INTO t_options (name, value, description) VALUES ('google_site_verification', '100000000', '谷歌网站验证码');
-INSERT INTO t_options (name, value, description) VALUES ('site_description', 'adafdsfasdfasdfas', 'asdfadsfa');
-INSERT INTO t_options (name, value, description) VALUES ('site_record', '10000', 'c');
-INSERT INTO t_options (name, value, description) VALUES ('site_title', 'Google', 'google is a great company');
-INSERT INTO t_options (name, value, description) VALUES ('social_csdn', 'zky', 'abc');
-INSERT INTO t_options (name, value, description) VALUES ('social_github', 'https://github.com/', 'social_github');
-INSERT INTO t_options (name, value, description) VALUES ('social_jianshu', 'zky', 'social_jianshu');
-INSERT INTO t_options (name, value, description) VALUES ('social_resume', 'zky', '简历');
-INSERT INTO t_options (name, value, description) VALUES ('social_twitter', 'zky', 'social_twitter');
-INSERT INTO t_options (name, value, description) VALUES ('social_weibo', 'zkydrx', 'social_weibo');
-INSERT INTO t_options (name, value, description) VALUES ('social_zhihu', '', 'social_zhihu');
+insert into t_options (name, value, description) values ('baidu_site_verification', '123456789', '百度网站验证码');
+insert into t_options (name, value, description) values ('google_site_verification', '100000000', '谷歌网站验证码');
+insert into t_options (name, value, description) values ('site_description', 'adafdsfasdfasdfas', 'asdfadsfa');
+insert into t_options (name, value, description) values ('site_record', '10000', 'c');
+insert into t_options (name, value, description) values ('site_title', 'Google', 'google is a great company');
+insert into t_options (name, value, description) values ('social_csdn', 'zky', 'abc');
+insert into t_options (name, value, description) values ('social_github', 'https://github.com/', 'social_github');
+insert into t_options (name, value, description) values ('social_jianshu', 'zky', 'social_jianshu');
+insert into t_options (name, value, description) values ('social_resume', 'zky', '简历');
+insert into t_options (name, value, description) values ('social_twitter', 'zky', 'social_twitter');
+insert into t_options (name, value, description) values ('social_weibo', 'zkydrx', 'social_weibo');
+insert into t_options (name, value, description) values ('social_zhihu', '', 'social_zhihu');

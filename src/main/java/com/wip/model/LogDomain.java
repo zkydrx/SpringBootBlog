@@ -10,7 +10,8 @@ import java.io.Serializable;
 /**
  * 日志表
  */
-public class LogDomain implements Serializable {
+public class LogDomain implements Serializable
+{
 
     private static final long serialVersionUID = 1L;
 
@@ -44,55 +45,68 @@ public class LogDomain implements Serializable {
      */
     private Integer created;
 
-    public static long getSerialVersionUID() {
+    public static long getSerialVersionUID()
+    {
         return serialVersionUID;
     }
 
-    public Integer getId() {
+    public Integer getId()
+    {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
         this.id = id;
     }
 
-    public String getAction() {
+    public String getAction()
+    {
         return action;
     }
 
-    public void setAction(String action) {
+    public void setAction(String action)
+    {
         this.action = action;
     }
 
-    public String getData() {
+    public String getData()
+    {
         return data;
     }
 
-    public void setData(String data) {
+    public void setData(String data)
+    {
         this.data = data;
     }
 
-    public Integer getAuthorId() {
+    public Integer getAuthorId()
+    {
         return authorId;
     }
 
-    public void setAuthorId(Integer authorId) {
+    public void setAuthorId(Integer authorId)
+    {
         this.authorId = authorId;
     }
 
-    public String getIp() {
+    public String getIp()
+    {
         return ip;
     }
 
-    public void setIp(String ip) {
+    public void setIp(String ip)
+    {
         this.ip = ip;
     }
 
-    public Integer getCreated() {
+    public Integer getCreated()
+    {
         return created;
     }
 
-    public void setCreated(Integer created) {
+    public void setCreated(Integer created)
+    {
         this.created = created;
     }
 }

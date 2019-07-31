@@ -23,7 +23,8 @@ import java.util.List;
 @Api("友情链接管理")
 @Controller
 @RequestMapping("/admin/links")
-public class LinksController extends BaseController {
+public class LinksController extends BaseController
+{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(LinksController.class);
 
@@ -33,7 +34,8 @@ public class LinksController extends BaseController {
 
     @ApiOperation("友链页面")
     @GetMapping(value = "")
-    public String index(HttpServletRequest request) {
+    public String index(HttpServletRequest request)
+    {
         MetaCond metaCond = new MetaCond();
         metaCond.setType(Types.LINK.getType());
         List<MetaDomain> metas = metaService.getMetas(metaCond);
@@ -44,38 +46,33 @@ public class LinksController extends BaseController {
     @ApiOperation("新增友情链接")
     @PostMapping(value = "/save")
     @ResponseBody
-    public APIResponse addLink(
-            @ApiParam(name = "title", value = "标签", required = true)
-            @RequestParam(name = "title", required = true)
-            String title,
-            @ApiParam(name = "url", value = "链接", required = true)
-            @RequestParam(name = "url", required = true)
-            String url,
-            @ApiParam(name = "logo", value = "logo", required = false)
-            @RequestParam(name = "logo", required = false)
-            String logo,
-            @ApiParam(name = "mid", value = "meta编号", required = false)
-            @RequestParam(name = "mid", required = false)
-            Integer mid,
-            @ApiParam(name = "sort", value = "sort", required = false)
-            @RequestParam(name = "sort", required = false, defaultValue = "0")
-            int sort
-    ) {
-        try {
+    public APIResponse addLink(@ApiParam(name = "title", value = "标签", required = true) @RequestParam(name = "title", required = true) String title,
+                               @ApiParam(name = "url", value = "链接", required = true) @RequestParam(name = "url", required = true) String url,
+                               @ApiParam(name = "logo", value = "logo", required = false) @RequestParam(name = "logo", required = false) String logo,
+                               @ApiParam(name = "mid", value = "meta编号", required = false) @RequestParam(name = "mid", required = false) Integer mid,
+                               @ApiParam(name = "sort", value = "sort", required = false) @RequestParam(name = "sort", required = false, defaultValue = "0") int sort)
+    {
+        try
+        {
             MetaDomain meta = new MetaDomain();
             meta.setName(title);
             meta.setSlug(url);
             meta.setDescription(logo);
             meta.setSort(sort);
             meta.setType(Types.LINK.getType());
-            if (null != mid) {
+            if (null != mid)
+            {
                 meta.setMid(mid);
                 metaService.updateMeta(meta);
-            } else {
+            }
+            else
+            {
                 metaService.addMea(meta);
             }
 
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
             throw BusinessException.withErrorCode(ErrorConstant.Meta.ADD_META_FAIL);
         }
@@ -86,21 +83,20 @@ public class LinksController extends BaseController {
     @ApiOperation("删除友情链接")
     @PostMapping(value = "/delete")
     @ResponseBody
-    public APIResponse deleteLink(
-            @ApiParam(name = "mid", value = "meta主键", required = true)
-            @RequestParam(name = "mid", required = true)
-            int mid
-    ) {
-        try {
+    public APIResponse deleteLink(@ApiParam(name = "mid", value = "meta主键", required = true) @RequestParam(name = "mid", required = true) int mid)
+    {
+        try
+        {
             metaService.deleteMetaById(mid);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
             throw BusinessException.withErrorCode(ErrorConstant.Meta.DELETE_META_FAIL);
         }
 
         return APIResponse.success();
     }
-
 
 
 }

@@ -54,7 +54,7 @@
                         <div class="col-md-12 portlets">
                             <!-- Your awesome content goes here -->
                             <div class="m-b-30">
-                                <form action="/admin/attach/upload" class="dropzone"  id="dropzone">
+                                <form action="/admin/attach/upload" class="dropzone" id="dropzone">
                                     <div class="fallback">
                                         <input name="file" type="file" multiple="multiple"/>
                                     </div>
@@ -90,7 +90,8 @@
                                         </span>
                                     </div>
                                     <div class="clearfix">
-                                        <button th:attr="url='http://pb84kab39.bkt.clouddn.com/'+${attach.fkey}" type="button"
+                                        <button th:attr="url='http://pb84kab39.bkt.clouddn.com/'+${attach.fkey}"
+                                                type="button"
                                                 class="btn btn-warning btn-sm waves-effect waves-light m-t-5 copy">
                                             <i class="fa fa-copy"></i> <span>复制</span>
                                         </button>
@@ -117,7 +118,6 @@
 <script type="text/javascript" th:inline="javascript">
     /*<![CDATA[*/
     var tale = new $.tale();
-
 
 
     $("div#dropzone").dropzone({
@@ -166,6 +166,7 @@
             }
         });
     }
+
     /*]]>*/
 </script>
 </body>

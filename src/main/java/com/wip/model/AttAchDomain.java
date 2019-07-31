@@ -8,7 +8,8 @@ package com.wip.model;
 /**
  * 网站图片文件相关表
  */
-public class AttAchDomain {
+public class AttAchDomain
+{
 
     /**
      * 主键编号
@@ -40,51 +41,63 @@ public class AttAchDomain {
      */
     private Integer created;
 
-    public Integer getId() {
+    public Integer getId()
+    {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Integer id)
+    {
         this.id = id;
     }
 
-    public String getFname() {
+    public String getFname()
+    {
         return fname;
     }
 
-    public void setFname(String fname) {
+    public void setFname(String fname)
+    {
         this.fname = fname;
     }
 
-    public String getFtype() {
+    public String getFtype()
+    {
         return ftype;
     }
 
-    public void setFtype(String ftype) {
+    public void setFtype(String ftype)
+    {
         this.ftype = ftype;
     }
 
-    public String getFkey() {
+    public String getFkey()
+    {
         return fkey;
     }
 
-    public void setFkey(String fkey) {
+    public void setFkey(String fkey)
+    {
         this.fkey = fkey;
     }
 
-    public Integer getAuthorId() {
+    public Integer getAuthorId()
+    {
         return authorId;
     }
 
-    public void setAuthorId(Integer authorId) {
+    public void setAuthorId(Integer authorId)
+    {
         this.authorId = authorId;
     }
 
-    public Integer getCreated() {
+    public Integer getCreated()
+    {
         return created;
     }
 
-    public void setCreated(Integer created) {
+    public void setCreated(Integer created)
+    {
         this.created = created;
     }
 }

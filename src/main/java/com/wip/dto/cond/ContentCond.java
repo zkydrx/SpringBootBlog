@@ -11,7 +11,8 @@ import lombok.Data;
  * 文章查询条件
  */
 @Data
-public class ContentCond {
+public class ContentCond
+{
     /**
      * 标签
      */

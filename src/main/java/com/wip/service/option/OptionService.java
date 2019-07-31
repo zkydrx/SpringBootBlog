@@ -13,22 +13,26 @@ import java.util.Map;
 /**
  * 网站选项相关Service接口
  */
-public interface OptionService {
+public interface OptionService
+{
 
     /**
      * 获取全部网站配置
+     *
      * @return
      */
     List<OptionsDomain> getOptions();
 
     /**
      * 保存系统设置
+     *
      * @param querys
      */
-    void saveOptions(Map<String,String> querys);
+    void saveOptions(Map<String, String> querys);
 
     /**
      * 更新网站配置
+     *
      * @param s
      * @param s1
      */
@@ -36,6 +40,7 @@ public interface OptionService {
 
     /**
      * 通过名称获取网站配置
+     *
      * @param site_record
      * @return
      */

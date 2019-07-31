@@ -10,7 +10,7 @@
     <sql id="BASE_COLUMN">
         m.mid, m.name, m.slug, m.type, m.contentType, m.description, m.sort, m.parent
     </sql>
-    
+
     <sql id="RELATION_SHIP_TABLE">
         <include refid="com.wip.dao.RelationShipDao.BASE_TABLE"/>
     </sql>
@@ -19,7 +19,7 @@
     <!--更新项目-->
     <update id="updateMeta" parameterType="com.wip.model.MetaDomain">
         UPDATE
-          <include refid="BASE_TABLE"/>
+        <include refid="BASE_TABLE"/>
         <set>
             <if test="name != null">
                 name = #{name, jdbcType=VARCHAR},
@@ -46,37 +46,39 @@
     <!--根据主键ID获取项目-->
     <select id="getMetaById" resultType="com.wip.model.MetaDomain">
         SELECT
-          <include refid="BASE_COLUMN"/>
+        <include refid="BASE_COLUMN"/>
         FROM
-          <include refid="BASE_TABLE"/> AS m
+        <include refid="BASE_TABLE"/>
+        AS m
         WHERE
-          m.mid = #{mid, jdbcType=INTEGER}
+        m.mid = #{mid, jdbcType=INTEGER}
     </select>
 
     <!--添加项目信息-->
     <insert id="addMeta" parameterType="com.wip.model.MetaDomain" useGeneratedKeys="true" keyProperty="mid">
         INSERT INTO
-          <include refid="BASE_TABLE"/>
-            <trim prefix="(" suffix=")" suffixOverrides=",">
-                name, slug, type, description, sort, parent
-            </trim>
+        <include refid="BASE_TABLE"/>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            name, slug, type, description, sort, parent
+        </trim>
         VALUES
-            <trim prefix="(" suffix=")" suffixOverrides=",">
-                #{name, jdbcType=VARCHAR},
-                #{slug, jdbcType=VARCHAR},
-                #{type, jdbcType=VARCHAR},
-                #{description, jdbcType=VARCHAR},
-                #{sort, jdbcType=INTEGER},
-                #{parent, jdbcType=INTEGER}
-            </trim>
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            #{name, jdbcType=VARCHAR},
+            #{slug, jdbcType=VARCHAR},
+            #{type, jdbcType=VARCHAR},
+            #{description, jdbcType=VARCHAR},
+            #{sort, jdbcType=INTEGER},
+            #{parent, jdbcType=INTEGER}
+        </trim>
     </insert>
 
     <!--根据条件获取项目-->
     <select id="getMetasByCond" resultType="com.wip.model.MetaDomain" parameterType="com.wip.dto.cond.MetaCond">
         SELECT
-          <include refid="BASE_COLUMN" />
+        <include refid="BASE_COLUMN"/>
         FROM
-          <include refid="BASE_TABLE"/> AS m
+        <include refid="BASE_TABLE"/>
+        AS m
         <where>
             <if test="name != null">
                 AND m.name = #{name, jdbcType=VARCHAR}
@@ -91,9 +93,9 @@
     <!--删除项目-->
     <delete id="deleteMetaById">
         DELETE FROM
-          <include refid="BASE_TABLE"/>
+        <include refid="BASE_TABLE"/>
         WHERE
-          mid = #{mid, jdbcType=INTEGER}
+        mid = #{mid, jdbcType=INTEGER}
 
     </delete>
 
@@ -108,46 +110,50 @@
     </resultMap>
 
     <resultMap id="MetaDto" type="com.wip.dto.MetaDto" extends="BaseResultMap">
-        <result column="count" property="count" jdbcType="INTEGER" />
+        <result column="count" property="count" jdbcType="INTEGER"/>
     </resultMap>
 
     <select id="selectFromSql" resultMap="MetaDto" parameterType="Map">
         SELECT
-          a.*,
-          count(b.cid) AS count 
+        a.*,
+        count(b.cid) AS count
         FROM
-          <include refid="BASE_TABLE" /> AS a
+        <include refid="BASE_TABLE"/>
+        AS a
         LEFT JOIN
-          <include refid="RELATION_SHIP_TABLE"/> AS b ON a.mid = b.mid
+        <include refid="RELATION_SHIP_TABLE"/>
+        AS b ON a.mid = b.mid
         WHERE
-          a.type = #{type}
+        a.type = #{type}
         GROUP BY
-          a.mid
+        a.mid
         ORDER BY
-          #{order}
+        #{order}
         LIMIT #{limit}
-        
+
     </select>
 
     <!--根据类型获取meta总数-->
     <select id="getMetasCountByType" resultType="java.lang.Long">
         SELECT
-          COUNT(*)
+        COUNT(*)
         FROM
-          <include refid="BASE_TABLE"/> AS m
+        <include refid="BASE_TABLE"/>
+        AS m
         WHERE
-          m.type = #{type, jdbcType=VARCHAR}
+        m.type = #{type, jdbcType=VARCHAR}
     </select>
     <!--通过Meta名查找Meta项目-->
     <select id="getMetaByName" resultType="com.wip.model.MetaDomain">
         SELECT
-          <include refid="BASE_COLUMN"/>
+        <include refid="BASE_COLUMN"/>
         FROM
-          <include refid="BASE_TABLE"/> AS m
+        <include refid="BASE_TABLE"/>
+        AS m
         WHERE
-          m.type = #{type, jdbcType=VARCHAR}
+        m.type = #{type, jdbcType=VARCHAR}
         AND
-          m.name = #{name, jdbcType=VARCHAR}
+        m.name = #{name, jdbcType=VARCHAR}
     </select>
 
 

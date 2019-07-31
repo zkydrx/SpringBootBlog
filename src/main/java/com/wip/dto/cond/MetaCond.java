@@ -8,7 +8,8 @@ package com.wip.dto.cond;
 /**
  * Meta查询条件
  */
-public class MetaCond {
+public class MetaCond
+{
 
     /**
      * 名称
@@ -20,19 +21,23 @@ public class MetaCond {
      */
     private String type;
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setType(String type) {
+    public void setType(String type)
+    {
         this.type = type;
     }
 
-    public String getType() {
+    public String getType()
+    {
         return type;
     }
 }

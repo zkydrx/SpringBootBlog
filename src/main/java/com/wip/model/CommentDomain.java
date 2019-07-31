@@ -8,7 +8,8 @@ package com.wip.model;
 /**
  * 评论表
  */
-public class CommentDomain {
+public class CommentDomain
+{
     /**
      * comment表主键
      */
@@ -43,7 +44,6 @@ public class CommentDomain {
     private String url;
     /**
      * 评论者ip地址
-     *
      */
     private String ip;
     /**
@@ -67,115 +67,143 @@ public class CommentDomain {
      */
     private String content;
 
-    public Integer getCoid() {
+    public Integer getCoid()
+    {
         return coid;
     }
 
-    public void setCoid(Integer coid) {
+    public void setCoid(Integer coid)
+    {
         this.coid = coid;
     }
 
-    public Integer getCid() {
+    public Integer getCid()
+    {
         return cid;
     }
 
-    public void setCid(Integer cid) {
+    public void setCid(Integer cid)
+    {
         this.cid = cid;
     }
 
-    public Integer getCreated() {
+    public Integer getCreated()
+    {
         return created;
     }
 
-    public void setCreated(Integer created) {
+    public void setCreated(Integer created)
+    {
         this.created = created;
     }
 
-    public String getAuthor() {
+    public String getAuthor()
+    {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(String author)
+    {
         this.author = author;
     }
 
-    public String getAuthorId() {
+    public String getAuthorId()
+    {
         return authorId;
     }
 
-    public void setAuthorId(String authorId) {
+    public void setAuthorId(String authorId)
+    {
         this.authorId = authorId;
     }
 
-    public Integer getOwnerId() {
+    public Integer getOwnerId()
+    {
         return ownerId;
     }
 
-    public void setOwnerId(Integer ownerId) {
+    public void setOwnerId(Integer ownerId)
+    {
         this.ownerId = ownerId;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return mail;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)
+    {
         this.mail = email;
     }
 
-    public String getUrl() {
+    public String getUrl()
+    {
         return url;
     }
 
-    public void setUrl(String url) {
+    public void setUrl(String url)
+    {
         this.url = url;
     }
 
-    public String getAgent() {
+    public String getAgent()
+    {
         return agent;
     }
 
-    public void setAgent(String agent) {
+    public void setAgent(String agent)
+    {
         this.agent = agent;
     }
 
-    public String getType() {
+    public String getType()
+    {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(String type)
+    {
         this.type = type;
     }
 
-    public String getStatus() {
+    public String getStatus()
+    {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(String status)
+    {
         this.status = status;
     }
 
-    public Integer getParent() {
+    public Integer getParent()
+    {
         return parent;
     }
 
-    public void setParent(Integer parent) {
+    public void setParent(Integer parent)
+    {
         this.parent = parent;
     }
 
-    public String getContent() {
+    public String getContent()
+    {
         return content;
     }
 
-    public void setContent(String content) {
+    public void setContent(String content)
+    {
         this.content = content;
     }
 
-    public String getIp() {
+    public String getIp()
+    {
         return ip;
     }
 
-    public void setIp(String ip) {
+    public void setIp(String ip)
+    {
         this.ip = ip;
     }
 }

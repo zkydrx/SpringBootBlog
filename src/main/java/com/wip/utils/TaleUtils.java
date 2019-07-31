@@ -26,23 +26,26 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TaleUtils {
+public class TaleUtils
+{
 
     /**
      * 匹配邮箱正则
      */
-    private static final Pattern VALID_EMAIL_ADDRESS_REGEX =
-            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
+    private static final Pattern VALID_EMAIL_ADDRESS_REGEX = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     private static final Pattern SLUG_REGEX = Pattern.compile("^[A-Za-z0-9_-]{5,100}$", Pattern.CASE_INSENSITIVE);
 
     /**
      * 获取session中的用户
+     *
      * @param request
      * @return
      */
-    public static UserDomain getLoginUser(HttpServletRequest request) {
+    public static UserDomain getLoginUser(HttpServletRequest request)
+    {
         HttpSession session = request.getSession();
-        if (null == session) {
+        if (null == session)
+        {
             return null;
         }
         return (UserDomain) session.getAttribute(WebConst.LOGIN_SESSION_KEY);
@@ -50,17 +53,24 @@ public class TaleUtils {
 
     /**
      * 获取cookie中的用户ID
+     *
      * @param request
      * @return
      */
-    public static Integer getCookieUid(HttpServletRequest request){
-        if (null != request) {
-            Cookie cookie = cookieRaw(WebConst.USER_IN_COOKIE,request);
-            if (cookie != null && cookie.getValue() != null) {
-                try {
+    public static Integer getCookieUid(HttpServletRequest request)
+    {
+        if (null != request)
+        {
+            Cookie cookie = cookieRaw(WebConst.USER_IN_COOKIE, request);
+            if (cookie != null && cookie.getValue() != null)
+            {
+                try
+                {
                     String uid = Tools.deAes(cookie.getValue(), WebConst.AES_SALT);
                     return StringUtils.isNotBlank(uid) && Tools.isNumber(uid) ? Integer.valueOf(uid) : null;
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     e.printStackTrace();
                 }
             }
@@ -70,17 +80,22 @@ public class TaleUtils {
 
     /**
      * 从cookies中获取指定cookie
-     * @param name          名称
-     * @param request       请求
-     * @return  cookie
+     *
+     * @param name    名称
+     * @param request 请求
+     * @return cookie
      */
-    private static Cookie cookieRaw(String name, HttpServletRequest request) {
+    private static Cookie cookieRaw(String name, HttpServletRequest request)
+    {
         Cookie[] servletCookies = request.getCookies();
-        if (servletCookies == null) {
+        if (servletCookies == null)
+        {
             return null;
         }
-        for (Cookie c: servletCookies) {
-            if (c.getName().equals(name)) {
+        for (Cookie c : servletCookies)
+        {
+            if (c.getName().equals(name))
+            {
                 return c;
             }
         }
@@ -89,33 +104,43 @@ public class TaleUtils {
 
     /**
      * 设置记住密码cookie
+     *
      * @param response
      * @param uid
      */
-    public static void setCookie(HttpServletResponse response, Integer uid) {
-        try {
-            String val= Tools.enAes(uid.toString(), WebConst.AES_SALT);
+    public static void setCookie(HttpServletResponse response, Integer uid)
+    {
+        try
+        {
+            String val = Tools.enAes(uid.toString(), WebConst.AES_SALT);
             boolean isSSL = false;
             Cookie cookie = new Cookie(WebConst.USER_IN_COOKIE, val);
             cookie.setPath("/");
             cookie.setMaxAge(60 * 30);
             cookie.setSecure(isSSL);
             response.addCookie(cookie);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             e.printStackTrace();
         }
     }
 
     /**
      * 获取保存文件的位置，jar所在的目录的路径
+     *
      * @return
      */
-    public static String getUploadFilePath() {
+    public static String getUploadFilePath()
+    {
         String path = TaleUtils.class.getProtectionDomain().getCodeSource().getLocation().getPath();
         path = path.substring(1, path.length());
-        try {
+        try
+        {
             java.net.URLDecoder.decode(path, "UTF-8");
-        } catch (UnsupportedEncodingException e) {
+        }
+        catch (UnsupportedEncodingException e)
+        {
             e.printStackTrace();
         }
         int lastIndex = path.lastIndexOf("/") + 1;
@@ -124,20 +149,26 @@ public class TaleUtils {
         return file.getAbsolutePath() + "/";
     }
 
-    public static String getFileKey(String name) {
+    public static String getFileKey(String name)
+    {
         String prefix = "/upload/" + DateKit.dateFormat(new Date(), "yyyy/MM");
-        if (!new File(AttachController.CLASSPATH + prefix).exists()) {
+        if (!new File(AttachController.CLASSPATH + prefix).exists())
+        {
             new File(AttachController.CLASSPATH + prefix).mkdirs();
         }
         name = StringUtils.trimToNull(name);
-        if (name == null) {
+        if (name == null)
+        {
             return prefix + "/" + UUID.UU32() + "." + null;
-        } else {
-            name = name.replace('\\','/');
+        }
+        else
+        {
+            name = name.replace('\\', '/');
             name = name.substring(name.lastIndexOf("/") + 1);
             int index = name.lastIndexOf(".");
             String ext = null;
-            if (index > 0) {
+            if (index > 0)
+            {
                 ext = StringUtils.trimToNull(name.substring(index + 1));
             }
             return prefix + "/" + UUID.UU32() + "." + (ext == null ? null : (ext));
@@ -146,17 +177,23 @@ public class TaleUtils {
 
     /**
      * 判断文件是否是图片类型
+     *
      * @param imageFile
      * @return
      */
-    public static boolean isImage(InputStream imageFile) {
-        try {
+    public static boolean isImage(InputStream imageFile)
+    {
+        try
+        {
             Image img = ImageIO.read(imageFile);
-            if (img == null || img.getWidth(null) <= 0 || img.getHeight(null) <= 0) {
+            if (img == null || img.getWidth(null) <= 0 || img.getHeight(null) <= 0)
+            {
                 return false;
             }
             return true;
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return false;
 
         }
@@ -164,29 +201,37 @@ public class TaleUtils {
 
     /**
      * MD5加密
-     * @param source    数据源
-     * @return  加密字符串
+     *
+     * @param source 数据源
+     * @return 加密字符串
      */
-    public static String MD5encode(String source) {
-        if (StringUtils.isBlank(source)) {
+    public static String MD5encode(String source)
+    {
+        if (StringUtils.isBlank(source))
+        {
             return null;
         }
         MessageDigest messageDigest = null;
 
-        try {
+        try
+        {
             // 得到一个信息摘要器
             messageDigest = MessageDigest.getInstance("MD5");
-        } catch (NoSuchAlgorithmException e) {
+        }
+        catch (NoSuchAlgorithmException e)
+        {
             e.printStackTrace();
         }
 
         byte[] encode = messageDigest.digest(source.getBytes());
         StringBuffer hexString = new StringBuffer();
         // 把每一个byte 做一个与运算 0xff;
-        for (byte anEncode : encode) {
+        for (byte anEncode : encode)
+        {
             // 与运算
             String hex = Integer.toHexString(0xff & anEncode);// 加盐
-            if (hex.length() == 1) {
+            if (hex.length() == 1)
+            {
                 hexString.append("0");
             }
             hexString.append(hex);
@@ -198,11 +243,14 @@ public class TaleUtils {
 
     /**
      * markdown转换为html
+     *
      * @param markdown
      * @return
      */
-    public static String mdToHtml(String markdown) {
-        if (StringUtils.isBlank(markdown)) {
+    public static String mdToHtml(String markdown)
+    {
+        if (StringUtils.isBlank(markdown))
+        {
             return "";
         }
         java.util.List<Extension> extensions = Arrays.asList(TablesExtension.create());
@@ -217,20 +265,24 @@ public class TaleUtils {
 
     /**
      * 判断是否是邮箱
+     *
      * @param emailStr
      * @return
      */
-    public static boolean isEmail(String emailStr) {
+    public static boolean isEmail(String emailStr)
+    {
         Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(emailStr);
         return matcher.find();
     }
 
     /**
      * 验证URL地址
+     *
      * @param url 格式：http://blog.csdn.net:80/xyang81/article/details/7705960? 或 http://www.csdn.net:80
      * @return 验证成功返回true，验证失败返回false
      */
-    public static boolean isURL(String url) {
+    public static boolean isURL(String url)
+    {
         String regex = "(https?://(w{3}\\.)?)?\\w+\\.\\w+(\\.[a-zA-Z]+)*(:\\d{1,5})?(/\\w*)*(\\??(.+=.*)?(&.+=.*)?)?";
         return Pattern.matches(regex, url);
     }
@@ -241,7 +293,8 @@ public class TaleUtils {
      * @param value
      * @return
      */
-    public static String cleanXSS(String value) {
+    public static String cleanXSS(String value)
+    {
         //You'll need to remove the spaces from the html entities below
         value = value.replaceAll("<", "&lt;").replaceAll(">", "&gt;");
         value = value.replaceAll("\\(", "&#40;").replaceAll("\\)", "&#41;");

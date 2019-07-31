@@ -19,7 +19,8 @@ import java.util.List;
  * 日志相关Service接口实现
  */
 @Service
-public class LogServiceImpl implements LogService {
+public class LogServiceImpl implements LogService
+{
 
 
     @Autowired
@@ -27,7 +28,8 @@ public class LogServiceImpl implements LogService {
 
 
     @Override
-    public void addLog(String action, String data, String ip, Integer authorId) {
+    public void addLog(String action, String data, String ip, Integer authorId)
+    {
         LogDomain logDomain = new LogDomain();
         logDomain.setAuthorId(authorId);
         logDomain.setIp(ip);
@@ -37,8 +39,9 @@ public class LogServiceImpl implements LogService {
     }
 
     @Override
-    public PageInfo<LogDomain> getLogs(int pageNum, int pageSize) {
-        PageHelper.startPage(pageNum,pageSize);
+    public PageInfo<LogDomain> getLogs(int pageNum, int pageSize)
+    {
+        PageHelper.startPage(pageNum, pageSize);
         List<LogDomain> logs = logDao.getLogs();
         PageInfo<LogDomain> pageInfo = new PageInfo<>(logs);
         return pageInfo;

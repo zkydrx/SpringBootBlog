@@ -26,7 +26,8 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class SiteServiceImpl implements SiteService {
+public class SiteServiceImpl implements SiteService
+{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SiteServiceImpl.class);
 
@@ -43,15 +44,16 @@ public class SiteServiceImpl implements SiteService {
     private AttAchDao attAchDao;
 
 
-
     @Override
     @Cacheable(value = "siteCache", key = "'comments_' + #p0")
-    public List<CommentDomain> getComments(int limit) {
+    public List<CommentDomain> getComments(int limit)
+    {
         LOGGER.debug("Enter recentComments method: limit={}", limit);
-        if (limit < 0 || limit > 10) {
+        if (limit < 0 || limit > 10)
+        {
             limit = 10;
         }
-        PageHelper.startPage(1,limit);
+        PageHelper.startPage(1, limit);
         List<CommentDomain> rs = commentDao.getCommentsByCond(new CommentCond());
         LOGGER.debug("Exit recentComments method");
         return rs;
@@ -59,12 +61,14 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     @Cacheable(value = "siteCache", key = "'newArticles_' + #p0")
-    public List<ContentDomain> getNewArticles(int limit) {
-        LOGGER.debug("Enter recentArticles method:limit={}",limit);
-        if (limit < 0 || limit > 10) {
+    public List<ContentDomain> getNewArticles(int limit)
+    {
+        LOGGER.debug("Enter recentArticles method:limit={}", limit);
+        if (limit < 0 || limit > 10)
+        {
             limit = 10;
         }
-        PageHelper.startPage(1,limit);
+        PageHelper.startPage(1, limit);
         List<ContentDomain> rs = contentDao.getArticleByCond(new ContentCond());
         LOGGER.debug("Exit recentArticles method");
         return rs;
@@ -72,7 +76,8 @@ public class SiteServiceImpl implements SiteService {
 
     @Override
     @Cacheable(value = "siteCache", key = "'statistics_'")
-    public StatisticsDto getStatistics() {
+    public StatisticsDto getStatistics()
+    {
         LOGGER.debug("Enter recentStatistics method");
 
         // 文章总数

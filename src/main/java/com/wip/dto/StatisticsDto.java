@@ -8,7 +8,8 @@ package com.wip.dto;
 /**
  * 后台统计对象
  */
-public class StatisticsDto {
+public class StatisticsDto
+{
 
     /**
      * 文章数
@@ -30,35 +31,43 @@ public class StatisticsDto {
      */
     private Long attachs;
 
-    public Long getArticles() {
+    public Long getArticles()
+    {
         return articles;
     }
 
-    public void setArticles(Long articles) {
+    public void setArticles(Long articles)
+    {
         this.articles = articles;
     }
 
-    public Long getComments() {
+    public Long getComments()
+    {
         return comments;
     }
 
-    public void setComments(Long comments) {
+    public void setComments(Long comments)
+    {
         this.comments = comments;
     }
 
-    public Long getLinks() {
+    public Long getLinks()
+    {
         return links;
     }
 
-    public void setLinks(Long links) {
+    public void setLinks(Long links)
+    {
         this.links = links;
     }
 
-    public Long getAttachs() {
+    public Long getAttachs()
+    {
         return attachs;
     }
 
-    public void setAttachs(Long attachs) {
+    public void setAttachs(Long attachs)
+    {
         this.attachs = attachs;
     }
 }

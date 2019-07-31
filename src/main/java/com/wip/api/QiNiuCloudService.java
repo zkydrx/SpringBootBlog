@@ -20,7 +20,8 @@ import java.io.IOException;
 /**
  * 七牛文件上传API
  */
-public class QiNiuCloudService {
+public class QiNiuCloudService
+{
 
     /**
      * 密钥凭证
@@ -39,11 +40,13 @@ public class QiNiuCloudService {
 
     /**
      * 上传文件到七牛公共方法
-     * @param file          上传的文件
-     * @param fileName      文件名
+     *
+     * @param file     上传的文件
+     * @param fileName 文件名
      * @return
      */
-    public static String upload(MultipartFile file, String fileName) {
+    public static String upload(MultipartFile file, String fileName)
+    {
 
         // 构造一个带指定Zone对象的配置类
         // 华东 Zone.zone0()
@@ -58,24 +61,32 @@ public class QiNiuCloudService {
         String key = null;
         Auth auth = Auth.create(ACCESS_KEY, SECRET_KEY);
         String upToken = auth.uploadToken(BUCKET);
-        try {
+        try
+        {
             Response response = null;
-            response = uploadManager.put(file.getInputStream(), fileName, upToken,null,null);
+            response = uploadManager.put(file.getInputStream(), fileName, upToken, null, null);
 
             // 解析上传成功的结果
-            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(),DefaultPutRet.class);
+            DefaultPutRet putRet = new Gson().fromJson(response.bodyString(), DefaultPutRet.class);
             System.out.println(putRet.key);
             System.out.println(putRet.hash);
-            return  putRet.key;
-        } catch (QiniuException ex) {
+            return putRet.key;
+        }
+        catch (QiniuException ex)
+        {
             Response r = ex.response;
             System.out.println(r.toString());
-            try {
+            try
+            {
                 System.out.println(r.bodyString());
-            } catch (QiniuException ex2) {
+            }
+            catch (QiniuException ex2)
+            {
 
             }
-        } catch (IOException e) {
+        }
+        catch (IOException e)
+        {
             e.printStackTrace();
         }
         return null;

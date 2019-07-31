@@ -9,14 +9,16 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
  * 向MVC中添加自定义组件
  */
 @Component
-public class WebMvcConfig  implements WebMvcConfigurer {
+public class WebMvcConfig implements WebMvcConfigurer
+{
 
     @Autowired
     private BaseInterceptor baseInterceptor;
 
 
     @Override
-    public void addInterceptors(InterceptorRegistry registry) {
+    public void addInterceptors(InterceptorRegistry registry)
+    {
         // 注册拦截器
         registry.addInterceptor(baseInterceptor);
     }

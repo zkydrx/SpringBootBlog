@@ -60,8 +60,10 @@
                                 <div class="panel-body">
                                     <ul class="list-group">
                                         <li class="list-group-item" th:each="article : ${articles}">
-                                            <span class="badge badge-primary" th:title="${article.commentsNum}+'条评论'" th:text="${article.commentsNum}"></span>
-                                            <a target="_blank" th:href="${commons.site_url('/detail/')}+${article.cid}" th:text="${commons.subStr(article.title,12)}"></a>
+                                            <span class="badge badge-primary" th:title="${article.commentsNum}+'条评论'"
+                                                  th:text="${article.commentsNum}"></span>
+                                            <a target="_blank" th:href="${commons.site_url('/detail/')}+${article.cid}"
+                                               th:text="${commons.subStr(article.title,12)}"></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -78,14 +80,20 @@
                                             还没有收到留言.
                                         </div>
                                     </div>
-                                    <ul class="list-group" th:unless="${comments}==null and ${#lists.size(comments)}==0">
+                                    <ul class="list-group"
+                                        th:unless="${comments}==null and ${#lists.size(comments)}==0">
                                         <li class="list-group-item" th:each="comment : ${comments}">
                                             <div th:if="${comment.url}!=null and ${comment.url}!=''">
-                                                <a th:href="@{${comment.url}}" target="_blank" th:text="${comment.author}"></a>
-                                                <th:block th:unless="${comment.url}!=null and ${comment.url}!=''" th:text="${comment.author}"/>
-                                                于<th:block th:text="${commons.fmtdate(comment.created,'MM月dd日HH:mm')}"/>：
+                                                <a th:href="@{${comment.url}}" target="_blank"
+                                                   th:text="${comment.author}"></a>
+                                                <th:block th:unless="${comment.url}!=null and ${comment.url}!=''"
+                                                          th:text="${comment.author}"/>
+                                                于
+                                                <th:block th:text="${commons.fmtdate(comment.created,'MM月dd日HH:mm')}"/>
+                                                ：
                                             </div>
-                                            <a th:href="${commons.site_url('/detail/')}+${comment.cid}+'#comments-content'" target="_blank" th:utext="${commons.article(comment.content)}"></a>
+                                            <a th:href="${commons.site_url('/detail/')}+${comment.cid}+'#comments-content'"
+                                               target="_blank" th:utext="${commons.article(comment.content)}"></a>
                                         </li>
                                     </ul>
                                 </div>
@@ -97,7 +105,7 @@
                                     <h4 class="panel-title">系统日志</h4>
                                 </div>
                                 <div class="panel-body">
-                                    <ul class="list-group" >
+                                    <ul class="list-group">
                                         <li class="list-group-item" th:each="log : ${logs}">
                                             <span th:text="${commons.fmtdate(log.created, 'yyyy-MM-dd HH:mm:ss')} +' => '+ ${log.action}"></span>
                                         </li>

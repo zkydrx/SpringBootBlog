@@ -8,7 +8,8 @@ package com.wip.dto.cond;
 /**
  * 评论的查找参数
  */
-public class CommentCond {
+public class CommentCond
+{
     /**
      * 状态
      */
@@ -27,35 +28,43 @@ public class CommentCond {
      */
     private Integer parent;
 
-    public String getStatus() {
+    public String getStatus()
+    {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(String status)
+    {
         this.status = status;
     }
 
-    public Integer getStartTime() {
+    public Integer getStartTime()
+    {
         return startTime;
     }
 
-    public void setStartTime(Integer startTime) {
+    public void setStartTime(Integer startTime)
+    {
         this.startTime = startTime;
     }
 
-    public Integer getEndTime() {
+    public Integer getEndTime()
+    {
         return endTime;
     }
 
-    public void setEndTime(Integer endTime) {
+    public void setEndTime(Integer endTime)
+    {
         this.endTime = endTime;
     }
 
-    public Integer getParent() {
+    public Integer getParent()
+    {
         return parent;
     }
 
-    public void setParent(Integer parent) {
+    public void setParent(Integer parent)
+    {
         this.parent = parent;
     }
 }

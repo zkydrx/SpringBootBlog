@@ -9,7 +9,8 @@ import java.util.Map;
  * 系统常量
  */
 @Component
-public class WebConst {
+public class WebConst
+{
 
 
     /**

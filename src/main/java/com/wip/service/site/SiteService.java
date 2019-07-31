@@ -14,10 +14,12 @@ import java.util.List;
 /**
  * 网站相关Service接口
  */
-public interface SiteService {
+public interface SiteService
+{
 
     /**
      * 获取评论列表
+     *
      * @param limit
      * @return
      */
@@ -25,6 +27,7 @@ public interface SiteService {
 
     /**
      * 获取文章列表
+     *
      * @param limit
      * @return
      */
@@ -32,6 +35,7 @@ public interface SiteService {
 
     /**
      * 获取后台统计数
+     *
      * @return
      */
     StatisticsDto getStatistics();

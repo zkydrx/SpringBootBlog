@@ -7,7 +7,8 @@ import com.wip.model.ContentDomain;
  * User: Kyrie
  * DateTime: 2018/7/23 10:57
  **/
-public enum Types {
+public enum Types
+{
 
     // 分类
     CATEGORY("category"),
@@ -33,15 +34,18 @@ public enum Types {
 
     private String type;
 
-    public java.lang.String getType() {
+    public java.lang.String getType()
+    {
         return type;
     }
 
-    public void setType(java.lang.String type) {
+    public void setType(java.lang.String type)
+    {
         this.type = type;
     }
 
-    Types(java.lang.String type) {
+    Types(java.lang.String type)
+    {
         this.type = type;
     }
 }

@@ -10,7 +10,10 @@
             <div class="post-block category" style="opacity: 1; display: block;">
                 <div id="posts" class="posts-collapse">
                     <div class="collection-title" style="opacity: 1; display: block; transform: translateX(0px);">
-                        <h1 style="margin:0 0 0 20px;"><th:block th:text="${category}"></th:block><small style="margin-left: 5px;">分类</small></h1>
+                        <h1 style="margin:0 0 0 20px;">
+                            <th:block th:text="${category}"></th:block>
+                            <small style="margin-left: 5px;">分类</small>
+                        </h1>
                     </div>
                     <th:block th:if="${articles}">
                         <article class="post post-type-normal" th:each="article : ${articles}">
@@ -21,7 +24,8 @@
                                     </a>
                                 </h2>
                                 <div class="post-meta">
-                                    <time class="post-time" itemprop="dateCreated" th:text="${commons.fmtdate(article.created, 'MM-dd')}"></time>
+                                    <time class="post-time" itemprop="dateCreated"
+                                          th:text="${commons.fmtdate(article.created, 'MM-dd')}"></time>
                                 </div>
                             </header>
                         </article>

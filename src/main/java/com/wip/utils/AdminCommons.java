@@ -13,20 +13,26 @@ import org.springframework.stereotype.Component;
  * 后台公共函数
  */
 @Component
-public final class AdminCommons {
+public final class AdminCommons
+{
 
 
     /**
      * 判断category和cat的交集
+     *
      * @param category
      * @param cats
      * @return
      */
-    public static boolean exist_cat(MetaDomain category, String cats) {
+    public static boolean exist_cat(MetaDomain category, String cats)
+    {
         String[] arr = StringUtils.split(cats, ",");
-        if (null != arr && arr.length > 0) {
-            for (String c : arr) {
-                if (c.trim().equals(category.getName())) {
+        if (null != arr && arr.length > 0)
+        {
+            for (String c : arr)
+            {
+                if (c.trim().equals(category.getName()))
+                {
                     return true;
                 }
             }
@@ -41,9 +47,11 @@ public final class AdminCommons {
 
     /**
      * 随机样式
+     *
      * @return
      */
-    public static String rand_color() {
+    public static String rand_color()
+    {
         int r = Tools.rand(0, COLORS.length - 1);
         return COLORS[r];
     }

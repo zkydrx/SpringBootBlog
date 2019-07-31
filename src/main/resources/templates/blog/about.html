@@ -60,20 +60,21 @@
                                 <th:block th:if="${index.value} != null and ${index.value} != ''">
                                     <th:block th:switch="${index.key}">
                                         <th:block th:case="'github'">
-                                            <li>GitHub：<a th:href="@{${index.value}}" target="_blank" th:text="${index.value}"></a></li>
+                                            <li>GitHub：<a th:href="@{${index.value}}" target="_blank"
+                                                          th:text="${index.value}"></a></li>
                                         </th:block>
-<!--                                        <th:block th:case="'jianshu'">-->
-<!--                                            <li>简书：<a th:href="@{${index.value}}" target="_blank" th:text="${index.value}"></a></li>-->
-<!--                                        </th:block>-->
-<!--                                        <th:block th:case="'zhihu'">-->
-<!--                                            <li>知乎：<a th:href="@{${index.value}}" target="_blank" th:text="${index.value}"></a></li>-->
-<!--                                        </th:block>-->
-<!--                                        <th:block th:case="'csdn'">-->
-<!--                                            <li>CSDN：<a th:href="@{${index.value}}" target="_blank" th:text="${index.value}"></a></li>-->
-<!--                                        </th:block>-->
-<!--                                        <th:block th:case="'resume'">-->
-<!--                                            <li>简历：<a th:href="@{${index.value}}" target="_blank" th:text="${index.value}"></a></li>-->
-<!--                                        </th:block>-->
+                                        <!--                                        <th:block th:case="'jianshu'">-->
+                                        <!--                                            <li>简书：<a th:href="@{${index.value}}" target="_blank" th:text="${index.value}"></a></li>-->
+                                        <!--                                        </th:block>-->
+                                        <!--                                        <th:block th:case="'zhihu'">-->
+                                        <!--                                            <li>知乎：<a th:href="@{${index.value}}" target="_blank" th:text="${index.value}"></a></li>-->
+                                        <!--                                        </th:block>-->
+                                        <!--                                        <th:block th:case="'csdn'">-->
+                                        <!--                                            <li>CSDN：<a th:href="@{${index.value}}" target="_blank" th:text="${index.value}"></a></li>-->
+                                        <!--                                        </th:block>-->
+                                        <!--                                        <th:block th:case="'resume'">-->
+                                        <!--                                            <li>简历：<a th:href="@{${index.value}}" target="_blank" th:text="${index.value}"></a></li>-->
+                                        <!--                                        </th:block>-->
                                     </th:block>
                                 </th:block>
                             </th:block>

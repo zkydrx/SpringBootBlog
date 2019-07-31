@@ -15,7 +15,8 @@ import java.util.List;
 /**
  * 文章相关Service接口
  */
-public interface ContentService {
+public interface ContentService
+{
 
     /***
      * 添加文章
@@ -25,6 +26,7 @@ public interface ContentService {
 
     /**
      * 根据编号获取文章
+     *
      * @param cid
      * @return
      */
@@ -32,12 +34,14 @@ public interface ContentService {
 
     /**
      * 更新文章
+     *
      * @param contentDomain
      */
     void updateArticleById(ContentDomain contentDomain);
 
     /**
      * 根据条件获取文章列表
+     *
      * @param contentCond
      * @param page
      * @param limit
@@ -47,18 +51,21 @@ public interface ContentService {
 
     /**
      * 删除文章
+     *
      * @param cid
      */
     void deleteArticleById(Integer cid);
 
     /**
      * 添加文章点击量
+     *
      * @param content
      */
     void updateContentByCid(ContentDomain content);
 
     /**
      * 通过分类获取文章
+     *
      * @param category
      * @return
      */
@@ -66,6 +73,7 @@ public interface ContentService {
 
     /**
      * 通过标签获取文章
+     *
      * @param tags
      * @return
      */
