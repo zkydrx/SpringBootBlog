@@ -6,9 +6,7 @@ import com.wip.constant.ErrorConstant;
 import com.wip.constant.Types;
 import com.wip.constant.WebConst;
 import com.wip.dto.MetaDto;
-import com.wip.dto.StatisticsDto;
 import com.wip.dto.cond.ContentCond;
-import com.wip.dto.cond.MetaCond;
 import com.wip.exception.BusinessException;
 import com.wip.model.CommentDomain;
 import com.wip.model.ContentDomain;
@@ -16,7 +14,6 @@ import com.wip.model.MetaDomain;
 import com.wip.service.article.ContentService;
 import com.wip.service.comment.CommentService;
 import com.wip.service.meta.MetaService;
-import com.wip.service.site.SiteService;
 import com.wip.utils.APIResponse;
 import com.wip.utils.IPKit;
 import com.wip.utils.TaleUtils;
@@ -26,12 +23,15 @@ import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.net.URLEncoder;
 import java.util.List;
 
@@ -59,7 +59,9 @@ public class HomeController extends BaseController {
             @RequestParam(name = "limit", required = false, defaultValue = "5")
             int limit
     ) {
-        PageInfo<ContentDomain> articles = contentService.getArticlesByCond(new ContentCond(), page, limit);
+        ContentCond contentCond = new ContentCond();
+        contentCond.setStatus("publish");
+        PageInfo<ContentDomain> articles = contentService.getArticlesByCond(contentCond, page, limit);
 
         request.setAttribute("articles",articles);
         return "blog/home";
