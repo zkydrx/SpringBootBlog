@@ -2,6 +2,7 @@ package com.wip.controller.admin;
 
 import com.github.pagehelper.PageInfo;
 import com.wip.api.QiNiuCloudService;
+import com.wip.api.TencentCloudService;
 import com.wip.constant.ErrorConstant;
 import com.wip.constant.LogActions;
 import com.wip.constant.Types;
@@ -23,7 +24,11 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,10 +91,9 @@ public class AttachController extends BaseController
 
             for (MultipartFile file : files)
             {
-
                 String fileName = TaleUtils.getFileKey(file.getOriginalFilename().replaceFirst("/", ""));
-
-                QiNiuCloudService.upload(file, fileName);
+                // QiNiuCloudService.upload(file, fileName);
+                TencentCloudService.uploadFiles(file, fileName);
                 AttAchDomain attAchDomain = new AttAchDomain();
                 HttpSession session = request.getSession();
                 UserDomain sessionUser = (UserDomain) session.getAttribute(WebConst.LOGIN_SESSION_KEY);
