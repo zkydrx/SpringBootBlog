@@ -12,9 +12,9 @@ import com.qcloud.cos.model.CreateBucketRequest;
 import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.model.PutObjectResult;
 import com.qcloud.cos.region.Region;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.util.List;
@@ -26,6 +26,7 @@ import java.util.List;
  * Time: 16:38:16
  * Description:
  * 腾讯云服务
+ * @author Administrator
  */
 public class TencentCloudService
 {
@@ -104,7 +105,7 @@ public class TencentCloudService
      *
      * @return
      */
-    public static void uploadFiles(MultipartFile file, String fileName)
+    public static void uploadFiles(File file, String fileName)
     {
         try
         {
@@ -113,11 +114,11 @@ public class TencentCloudService
             ClientConfig clientConfig = new ClientConfig(region);
             COSClient cosClient = new COSClient(cred, clientConfig);
             // 指定要上传的文件
-            File localFile = (File) file;
+            File localFile = file;
             // 指定要上传到的存储桶
             String bucketName = "zky-1254028183";
             // 指定要上传到 COS 上对象键
-            String key = "exampleobject";
+            String key = "exampleobject"+ RandomStringUtils.random(6) +".pdf";
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
             PutObjectResult putObjectResult = cosClient.putObject(putObjectRequest);
         }

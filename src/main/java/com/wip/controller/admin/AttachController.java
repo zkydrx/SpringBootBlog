@@ -34,6 +34,7 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
 import java.io.IOException;
 
 @Api("文件管理")
@@ -93,7 +94,7 @@ public class AttachController extends BaseController
             {
                 String fileName = TaleUtils.getFileKey(file.getOriginalFilename().replaceFirst("/", ""));
                 // QiNiuCloudService.upload(file, fileName);
-                TencentCloudService.uploadFiles(file, fileName);
+                TencentCloudService.uploadFiles((File) file, fileName);
                 AttAchDomain attAchDomain = new AttAchDomain();
                 HttpSession session = request.getSession();
                 UserDomain sessionUser = (UserDomain) session.getAttribute(WebConst.LOGIN_SESSION_KEY);
