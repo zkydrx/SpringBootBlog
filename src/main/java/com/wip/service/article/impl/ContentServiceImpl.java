@@ -52,19 +52,29 @@ public class ContentServiceImpl implements ContentService
     public void addArticle(ContentDomain contentDomain)
     {
         if (null == contentDomain)
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Common.PARAM_IS_EMPTY);
+        }
 
         if (StringUtils.isBlank(contentDomain.getTitle()))
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Article.TITLE_CAN_NOT_EMPTY);
+        }
 
         if (contentDomain.getTitle().length() > WebConst.MAX_TITLE_COUNT)
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Article.TITLE_IS_TOO_LONG);
+        }
 
         if (StringUtils.isBlank(contentDomain.getContent()))
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Article.CONTENT_CAN_NOT_EMPTY);
+        }
 
         if (contentDomain.getContent().length() > WebConst.MAX_CONTENT_COUNT)
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Article.CONTENT_IS_TOO_LONG);
+        }
 
         // 取到标签和分类
         String tags = contentDomain.getTags();
@@ -86,7 +96,9 @@ public class ContentServiceImpl implements ContentService
     public ContentDomain getArticleById(Integer cid)
     {
         if (null == cid)
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Common.PARAM_IS_EMPTY);
+        }
         return contentDao.getArticleById(cid);
     }
 
@@ -113,7 +125,9 @@ public class ContentServiceImpl implements ContentService
     public PageInfo<ContentDomain> getArticlesByCond(ContentCond contentCond, int pageNum, int pageSize)
     {
         if (null == contentCond)
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Common.PARAM_IS_EMPTY);
+        }
         PageHelper.startPage(pageNum, pageSize);
         List<ContentDomain> contents = contentDao.getArticleByCond(contentCond);
         PageInfo<ContentDomain> pageInfo = new PageInfo<>(contents);
@@ -126,7 +140,9 @@ public class ContentServiceImpl implements ContentService
     public void deleteArticleById(Integer cid)
     {
         if (null == cid)
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Common.PARAM_IS_EMPTY);
+        }
         // 删除文章
         contentDao.deleteArticleById(cid);
 
@@ -164,7 +180,9 @@ public class ContentServiceImpl implements ContentService
     public List<ContentDomain> getArticleByCategory(String category)
     {
         if (null == category)
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Common.PARAM_IS_EMPTY);
+        }
         return contentDao.getArticleByCategory(category);
     }
 
@@ -173,7 +191,9 @@ public class ContentServiceImpl implements ContentService
     public List<ContentDomain> getArticleByTags(MetaDomain tags)
     {
         if (null == tags)
+        {
             throw BusinessException.withErrorCode(ErrorConstant.Common.PARAM_IS_EMPTY);
+        }
         List<RelationShipDomain> relationShip = relationShipDao.getRelationShipByMid(tags.getMid());
         if (null != relationShip && relationShip.size() > 0)
         {
